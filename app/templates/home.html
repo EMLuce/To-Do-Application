@@ -41,35 +41,16 @@
   <ul class="list-group">
     {% for note in user.notes %} {% if note.completed == False %}
     <li class="list-group-item">
-      <input
-        type="checkbox"
-        class="close"
-        onClick="completeNote({{ note.id }})" />
-      <p class="note" contenteditable="true">{{note.note}}</p>
-      <button type="button" class="close" onClick="deleteNote({{ note.id }})">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <p class="inline-data">
-        <img
-          src="{{ url_for('static', filename='images/calendar.png') }}"
-          alt="" />
-        {{note.due_date}}
-      </p>
-      <p class="inline-data">
-        {% if note.status == 'Completed' %}
-        <img
-          src="{{ url_for('static', filename='images/completed-check.png') }}"
-          alt="" />
-        {% elif note.status == 'Working' %}
-        <img
-          src="{{ url_for('static', filename='images/image.png') }}"
-          alt="" />
-        {% elif note.status == 'None' %}
-        <img
-          src="{{ url_for('static', filename='images/calendar.png') }}"
-          alt="" />
-        {% endif %} {{note.status}}
-      </p>
+      <span aria-hidden="true">
+        <input type="checkbox" onClick="completeNote({{ note.id }})" />
+      </span>
+      <span aria-hidden="true" class="due-date">{{note.due_date}}</span>
+      <span>
+        <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </span>
+      <p class="note">{{note.note}}</p>
     </li>
     {% endif %} {% endfor %}
   </ul>
@@ -82,35 +63,16 @@
   <ul class="list-group">
     {% for note in user.notes %} {% if note.completed == True %}
     <li class="list-group-item">
-      <input
-        type="checkbox"
-        class="close"
-        onClick="completeNote({{ note.id }})" />
-      <p class="note" contenteditable="true">{{note.note}}</p>
-      <button type="button" class="close" onClick="deleteNote({{ note.id }})">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <p class="inline-data">
-        <img
-          src="{{ url_for('static', filename='images/calendar.png') }}"
-          alt="" />
-        {{note.due_date}}
-      </p>
-      <p class="inline-data">
-        {% if note.status == 'Completed' %}
-        <img
-          src="{{ url_for('static', filename='images/completed-check.png') }}"
-          alt="" />
-        {% elif note.status == 'Working' %}
-        <img
-          src="{{ url_for('static', filename='images/image.png') }}"
-          alt="" />
-        {% elif note.status == 'None' %}
-        <img
-          src="{{ url_for('static', filename='images/calendar.png') }}"
-          alt="" />
-        {% endif %} {{note.status}}
-      </p>
+      <span aria-hidden="true">
+        <input type="checkbox" onClick="completeNote({{ note.id }})" />
+      </span>
+      <span aria-hidden="true" class="due-date">{{note.due_date}}</span>
+      <span>
+        <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </span>
+      <p class="note">{{note.note}}</p>
     </li>
     {% endif %} {% endfor %}
   </ul>

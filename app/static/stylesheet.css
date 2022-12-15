@@ -1,3 +1,6 @@
+h3 {
+  text-align: center;
+}
 .profile-header-img {
   width: 100px;
   height: 75px;
@@ -17,10 +20,6 @@
   margin: 0 auto;
   width: 300px;
 }
-.login-container h3 {
-  font-weight: 100;
-  text-align: center;
-}
 .login-container p {
   text-align: center;
 }
@@ -35,10 +34,6 @@
   margin: 0 auto;
   width: 300px;
 }
-.signup-container h3 {
-  font-weight: 100;
-  text-align: center;
-}
 .signup-container p {
   text-align: center;
 }
@@ -49,20 +44,10 @@
 /* Signup Page End CSS */
 
 /* Home Page (Note Input) CSS */
-.note-create-container h3 {
-  font-weight: 100;
-  text-align: center;
-}
 .note-create-container form {
   margin: auto;
   width: 220px;
   text-align: center;
-}
-.note-create-container .form-group {
-  display: inline;
-}
-.note-create-container .custom-select {
-  text-align: left;
 }
 /* Home Page End (Note Input) CSS */
 
@@ -73,39 +58,33 @@
   width: 50%;
   margin: auto;
 }
+.working-note-display-container .due-date {
+  padding: 170px;
+  color: #161b22;
+}
 .working-note-display-container .note {
-  font-weight: bold;
-}
-.working-note-display-container img {
-  width: 15px;
-  height: 15px;
-}
-.working-note-display-container .inline-data {
-  display: inline;
-}
-.working-note-display-container h3 {
-  font-weight: 100;
   text-align: center;
+  padding-top: 10px;
+  font-weight: bold;
+  overflow-wrap: break-word;
 }
 /* break */
+
 .completed-note-display-container ul {
   color: black;
   padding-top: 5px;
   width: 50%;
   margin: auto;
 }
+.completed-note-display-container .due-date {
+  padding: 170px;
+  color: #161b22;
+}
 .completed-note-display-container .note {
-  font-weight: bold;
-}
-.completed-note-display-container img {
-  width: 15px;
-  height: 15px;
-}
-.completed-note-display-container .inline-data {
-  display: inline;
-}
-.completed-note-display-container h3 {
-  font-weight: 100;
   text-align: center;
+  padding-top: 10px;
+  font-weight: bold;
+  overflow-wrap: break-word;
 }
+
 /* Home Page End (Note Display) CSS */
