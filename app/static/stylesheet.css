@@ -55,11 +55,12 @@ h3 {
 .working-note-display-container ul {
   color: black;
   padding-top: 5px;
-  width: 50%;
+  width: 35%;
   margin: auto;
 }
-.working-note-display-container .due-date {
-  padding: 170px;
+.working-note-display-container .date {
+  text-align: center;
+  font-size: x-small;
   color: #161b22;
 }
 .working-note-display-container .note {
@@ -73,11 +74,12 @@ h3 {
 .completed-note-display-container ul {
   color: black;
   padding-top: 5px;
-  width: 50%;
+  width: 35%;
   margin: auto;
 }
-.completed-note-display-container .due-date {
-  padding: 170px;
+.completed-note-display-container .date {
+  text-align: center;
+  font-size: x-small;
   color: #161b22;
 }
 .completed-note-display-container .note {

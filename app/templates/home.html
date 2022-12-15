@@ -44,13 +44,13 @@
       <span aria-hidden="true">
         <input type="checkbox" onClick="completeNote({{ note.id }})" />
       </span>
-      <span aria-hidden="true" class="due-date">{{note.due_date}}</span>
       <span>
         <button type="button" class="close" onClick="deleteNote({{ note.id }})">
           <span aria-hidden="true">&times;</span>
         </button>
       </span>
       <p class="note">{{note.note}}</p>
+      <p class="date">{{note.due_date}}</p>
     </li>
     {% endif %} {% endfor %}
   </ul>
@@ -66,16 +66,18 @@
       <span aria-hidden="true">
         <input type="checkbox" onClick="completeNote({{ note.id }})" />
       </span>
-      <span aria-hidden="true" class="due-date">{{note.due_date}}</span>
       <span>
         <button type="button" class="close" onClick="deleteNote({{ note.id }})">
           <span aria-hidden="true">&times;</span>
         </button>
       </span>
       <p class="note">{{note.note}}</p>
+      <p class="date">{{note.due_date}}</p>
     </li>
     {% endif %} {% endfor %}
   </ul>
 </div>
+<br />
+<br />
 
 {% endblock %}
