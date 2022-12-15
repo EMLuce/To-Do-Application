@@ -12,17 +12,17 @@ views =  Blueprint('views', __name__)
 @login_required
 def home():
     now = datetime.now()
-    date = now.strftime("%Y/%m/%d")
+    current_date = now.strftime("%Y-%m-%d")
     if request.method == 'POST':
         note = request.form.get('note')
         due_date = request.form.get('due-date')
 
-        new_note = Note(creation_date=date, note=note, user_id=current_user.id, status='Working', due_date=due_date)
+        new_note = Note(creation_date=current_date, note=note, user_id=current_user.id, status='Working', due_date=due_date)
         db.session.add(new_note)
         db.session.commit()
 
 
-    return render_template('home.html', user=current_user, date=date)
+    return render_template('home.html', user=current_user, current_date=current_date)
 
 
 @views.route('/delete-note', methods=['POST'])

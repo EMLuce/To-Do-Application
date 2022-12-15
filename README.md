@@ -31,3 +31,9 @@ Flask
 Flask Resources
 
 We look forward to hearing from you. Please cc Will when you return the project and if you have any questions. As far as a timeline goes, we ask that you put your best foot forward but understand that the amount of time you take to return the project impacts our expectations.
+
+TODO
+
+1. Make due-dates go red once surpassed. COMPLETED
+2. Allow the user to edit their notes easily.
+3. Allow the user to re-arrange their notes easily.

@@ -5,25 +5,24 @@
 <div class="note-create-container">
   <form method="POST">
     <br />
-    <h3>To-Do</h3>
-    <br />
     <div class="form-group">
       <input
         type="text"
         class="form-control"
         name="note"
         id="note"
-        placeholder=""
+        placeholder="To-Do"
         required />
     </div>
-
     <div class="form-group">
       <input
         class="custom-select"
-        type="date"
+        type="text"
         id="due-date"
         name="due-date"
         value=""
+        placeholder="Due Date"
+        onfocus="(this.type='date')"
         required />
     </div>
     <input
@@ -40,7 +39,7 @@
   <h3>Working</h3>
   <ul class="list-group">
     {% for note in user.notes %} {% if note.completed == False %}
-    <li class="list-group-item">
+    <li class="list-group-item" draggable="true">
       <span aria-hidden="true">
         <input type="checkbox" onClick="completeNote({{ note.id }})" />
       </span>
@@ -50,7 +49,11 @@
         </button>
       </span>
       <p class="note">{{note.note}}</p>
-      <p class="date">{{note.due_date}}</p>
+      {% if note.due_date > current_date %}
+      <p class="date-good">{{note.due_date}}</p>
+      {% else %}
+      <p class="date-overdue">Overdue: {{note.due_date}}</p>
+      {% endif %}
     </li>
     {% endif %} {% endfor %}
   </ul>
@@ -62,17 +65,22 @@
   <h3>Completed</h3>
   <ul class="list-group">
     {% for note in user.notes %} {% if note.completed == True %}
-    <li class="list-group-item">
+    <li class="list-group-item" draggable="true">
       <span aria-hidden="true">
         <input type="checkbox" onClick="completeNote({{ note.id }})" />
       </span>
+
       <span>
         <button type="button" class="close" onClick="deleteNote({{ note.id }})">
           <span aria-hidden="true">&times;</span>
         </button>
       </span>
       <p class="note">{{note.note}}</p>
-      <p class="date">{{note.due_date}}</p>
+      {% if note.due_date > current_date %}
+      <p class="date-good">{{note.due_date}}</p>
+      {% else %}
+      <p class="date-overdue">{{note.due_date}}</p>
+      {% endif %}
     </li>
     {% endif %} {% endfor %}
   </ul>
