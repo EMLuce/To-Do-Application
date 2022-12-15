@@ -16,7 +16,7 @@ Ability to order to-dos
 
 Marking to-dos as complete COMPLETED
 
-Add Requirements file.
+Add Requirements file. COMPLETED
 
 Attached is a very basic Flask application for you to use as a starting point:
 

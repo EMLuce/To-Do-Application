@@ -44,8 +44,25 @@
         <input type="checkbox" onClick="completeNote({{ note.id }})" />
       </span>
       <span>
-        <button type="button" class="close" onClick="deleteNote({{ note.id }})">
-          <span aria-hidden="true">&times;</span>
+        <button
+          type="delete-button"
+          class="close"
+          onClick="deleteNote({{ note.id }})">
+          <span aria-hidden="true"
+            ><img
+              class="delete-button-image"
+              src="{{ url_for('static', filename='images/garbagecan.png') }}"
+          /></span>
+        </button>
+        <button
+          type="edit-button"
+          class="close"
+          onClick="editNote({{ note.id }})">
+          <span aria-hidden="true"
+            ><img
+              class="edit-button-image"
+              src="{{ url_for('static', filename='images/edit-button.png') }}"
+          /></span>
         </button>
       </span>
       <p class="note">{{note.note}}</p>
@@ -74,10 +91,24 @@
         </span>
         <span>
           <button
-            type="button"
+            type="delete-button"
             class="close"
             onClick="deleteNote({{ note.id }})">
-            <span aria-hidden="true">&times;</span>
+            <span aria-hidden="true"
+              ><img
+                class="delete-button-image"
+                src="{{ url_for('static', filename='images/garbagecan.png') }}"
+            /></span>
+          </button>
+          <button
+            type="edit-button"
+            class="close"
+            onClick="editNote({{ note.id }})">
+            <span aria-hidden="true"
+              ><img
+                class="edit-button-image"
+                src="{{ url_for('static', filename='images/edit-button.png') }}"
+            /></span>
           </button>
         </span>
         <p class="note">{{note.note}}</p>
