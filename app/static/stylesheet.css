@@ -77,6 +77,10 @@ h3 {
   overflow-wrap: break-word;
   margin: 0;
 }
+.working-note-display-container h4 {
+  font-weight: bold;
+  text-align: center;
+}
 /* break */
 
 .completed-note-display-container ul {
@@ -106,5 +110,4 @@ h3 {
   overflow-wrap: break-word;
   margin: 0;
 }
-
 /* Home Page End (Note Display) CSS */

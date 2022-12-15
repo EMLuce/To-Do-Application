@@ -36,7 +36,7 @@
 <br />
 
 <div class="working-note-display-container">
-  <h3>Working</h3>
+  <h4>To-Do List</h4>
   <ul class="list-group">
     {% for note in user.notes %} {% if note.completed == False %}
     <li class="list-group-item" draggable="true">
@@ -62,29 +62,36 @@
 <br />
 
 <div class="completed-note-display-container">
-  <h3>Completed</h3>
-  <ul class="list-group">
-    {% for note in user.notes %} {% if note.completed == True %}
-    <li class="list-group-item" draggable="true">
-      <span aria-hidden="true">
-        <input type="checkbox" onClick="completeNote({{ note.id }})" />
-      </span>
-
-      <span>
-        <button type="button" class="close" onClick="deleteNote({{ note.id }})">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </span>
-      <p class="note">{{note.note}}</p>
-      {% if note.due_date > current_date %}
-      <p class="date-good">{{note.due_date}}</p>
-      {% else %}
-      <p class="date-overdue">{{note.due_date}}</p>
-      {% endif %}
-    </li>
-    {% endif %} {% endfor %}
-  </ul>
+  <form action="submit">
+    <ul class="list-group">
+      {% for note in user.notes %} {% if note.completed == True %}
+      <li class="list-group-item" draggable="true">
+        <span aria-hidden="true">
+          <input
+            type="checkbox"
+            onClick="completeNote({{ note.id }})"
+            checked />
+        </span>
+        <span>
+          <button
+            type="button"
+            class="close"
+            onClick="deleteNote({{ note.id }})">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </span>
+        <p class="note">{{note.note}}</p>
+        {% if note.due_date > current_date %}
+        <p class="date-good">{{note.due_date}}</p>
+        {% else %}
+        <p class="date-overdue">{{note.due_date}}</p>
+        {% endif %}
+      </li>
+      {% endif %} {% endfor %}
+    </ul>
+  </form>
 </div>
+
 <br />
 <br />
 
