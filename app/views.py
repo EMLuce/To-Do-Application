@@ -14,6 +14,9 @@ views =  Blueprint('views', __name__)
 def home():
     now = datetime.now()
     current_date = now.strftime("%Y-%m-%d")
+    for index, notes in enumerate(current_user.notes):
+        print(index,notes)
+
     if request.method == 'POST':
         note = request.form.get('note')
         due_date = request.form.get('due-date')
@@ -21,7 +24,6 @@ def home():
         new_note = Note(creation_date=current_date, note=note, user_id=current_user.id, status='Working', due_date=due_date)
         db.session.add(new_note)
         db.session.commit()
-
 
     return render_template('home.html', user=current_user, current_date=current_date)
 
@@ -73,3 +75,4 @@ def update(note_id):
         return redirect(url_for('views.home'))
 
     return render_template('update.html', user=current_user, note=note)
+    
