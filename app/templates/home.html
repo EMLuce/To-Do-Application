@@ -37,11 +37,46 @@
 
 <div class="working-note-display-container">
   <h4>To-Do List</h4>
+  <form action="submit">
+    <ul class="list-group">
+      {% for note in user.notes %} {% if note.completed == False %}
+      <li class="list-group-item" draggable="true">
+        <span aria-hidden="true">
+          <input type="checkbox" onClick="completeNote({{ note.id }})" />
+        </span>
+        <span>
+          <button type="delete-button" class="close">
+            <span aria-hidden="true"
+              ><img
+                class="delete-button-image"
+                src="{{ url_for('static', filename='images/garbagecan.png') }}"
+                onClick="deleteNote({{ note.id }})"
+            /></span>
+          </button>
+          <button type="edit-button" class="close">
+            <a href="/update/{{ note.id }}">edit</a>
+          </button>
+        </span>
+        <p class="note" id="note-data">{{note.note}}</p>
+        {% if note.due_date > current_date %}
+        <p class="date-good">{{note.due_date}}</p>
+        {% else %}
+        <p class="date-overdue">Overdue: {{note.due_date}}</p>
+        {% endif %}
+      </li>
+      {% endif %} {% endfor %}
+    </ul>
+  </form>
+</div>
+
+<br />
+
+<div class="completed-note-display-container">
   <ul class="list-group">
-    {% for note in user.notes %} {% if note.completed == False %}
+    {% for note in user.notes %} {% if note.completed == True %}
     <li class="list-group-item" draggable="true">
       <span aria-hidden="true">
-        <input type="checkbox" onClick="completeNote({{ note.id }})" />
+        <input type="checkbox" onClick="completeNote({{ note.id }})" checked />
       </span>
       <span>
         <button
@@ -54,73 +89,16 @@
               src="{{ url_for('static', filename='images/garbagecan.png') }}"
           /></span>
         </button>
-        <button
-          type="edit-button"
-          class="close"
-          onClick="editNote({{ note.id }})">
-          <span aria-hidden="true"
-            ><img
-              class="edit-button-image"
-              src="{{ url_for('static', filename='images/edit-button.png') }}"
-          /></span>
-        </button>
       </span>
       <p class="note">{{note.note}}</p>
       {% if note.due_date > current_date %}
       <p class="date-good">{{note.due_date}}</p>
       {% else %}
-      <p class="date-overdue">Overdue: {{note.due_date}}</p>
+      <p class="date-overdue">{{note.due_date}}</p>
       {% endif %}
     </li>
     {% endif %} {% endfor %}
   </ul>
-</div>
-
-<br />
-
-<div class="completed-note-display-container">
-  <form action="submit">
-    <ul class="list-group">
-      {% for note in user.notes %} {% if note.completed == True %}
-      <li class="list-group-item" draggable="true">
-        <span aria-hidden="true">
-          <input
-            type="checkbox"
-            onClick="completeNote({{ note.id }})"
-            checked />
-        </span>
-        <span>
-          <button
-            type="delete-button"
-            class="close"
-            onClick="deleteNote({{ note.id }})">
-            <span aria-hidden="true"
-              ><img
-                class="delete-button-image"
-                src="{{ url_for('static', filename='images/garbagecan.png') }}"
-            /></span>
-          </button>
-          <button
-            type="edit-button"
-            class="close"
-            onClick="editNote({{ note.id }})">
-            <span aria-hidden="true"
-              ><img
-                class="edit-button-image"
-                src="{{ url_for('static', filename='images/edit-button.png') }}"
-            /></span>
-          </button>
-        </span>
-        <p class="note">{{note.note}}</p>
-        {% if note.due_date > current_date %}
-        <p class="date-good">{{note.due_date}}</p>
-        {% else %}
-        <p class="date-overdue">{{note.due_date}}</p>
-        {% endif %}
-      </li>
-      {% endif %} {% endfor %}
-    </ul>
-  </form>
 </div>
 
 <br />
