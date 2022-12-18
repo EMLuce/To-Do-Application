@@ -1,3 +1,5 @@
+$("#working_sortable").sortable();
+
 function deleteNote(noteId) {
   fetch("/delete-note", {
     method: "POST",

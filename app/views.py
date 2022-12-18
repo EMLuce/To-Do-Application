@@ -14,8 +14,6 @@ views =  Blueprint('views', __name__)
 def home():
     now = datetime.now()
     current_date = now.strftime("%Y-%m-%d")
-    for index, notes in enumerate(current_user.notes):
-        print(index,notes)
 
     if request.method == 'POST':
         note = request.form.get('note')
@@ -79,4 +77,10 @@ def update(note_id):
         return redirect(url_for('views.home'))
 
     return render_template('update.html', user=current_user, note=note)
-    
+
+@views.route('/sort', methods=['GET','POST'])
+@login_required
+def sort():
+    pass
+
+    return jsonify()

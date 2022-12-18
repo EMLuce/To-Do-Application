@@ -23,3 +23,13 @@ class Note(db.Model):
     completed = db.Column(db.Boolean, default=False, server_default="false")
     completed_date = db.Column(db.String(150), default='')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+class FailedAttempts(db.Model):
+    """This class is utilized to store security data. The intent is to
+    have a log of every failed login attempt to prevent bruteforce attacks
+    and limit vulnerabilities."""
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(150))
+    ip = db.Column(db.Integer)
+    date = db.Column(db.Integer)
+    location = db.Column(db.String(300))

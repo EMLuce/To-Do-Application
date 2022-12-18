@@ -1,6 +1,8 @@
 import re
+import socket
 import uuid as uuid
 from datetime import datetime
+import geocoder
 
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, logout_user
@@ -8,7 +10,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from app import db
 
-from .models import User
+from .models import User, FailedAttempts
 
 auth =  Blueprint('auth', __name__)
 
@@ -26,17 +28,39 @@ def login():
                 login_user(user_email, remember=True)
                 return redirect(url_for('views.home'))
             else:
-                flash(f'Incorrect password!', category='error')
+                user_email = user_email.email
+                current_date = datetime.now()
+                format_date = current_date.strftime("%d/%m/%Y %H:%M:%S")
+                hostname = socket.gethostname()
+                user_ip = socket.gethostbyname(hostname)
+                ip = geocoder.ip('me')
+                location = ip.city
+                failure = FailedAttempts(email=user_email, ip=user_ip, date=format_date,
+                                         location=location)
+                db.session.add(failure)
+                db.session.commit()
+                flash(f'Incorrect login information.', category='error')
         
         elif user_username:
             if check_password_hash(user_username.password, password):
                 login_user(user_username, remember=True)
                 return redirect(url_for('views.home'))
             else:
-                flash(f'Incorrect password!', category='error')
+                user_email = user_username.email
+                current_date = datetime.now()
+                format_date = current_date.strftime("%d/%m/%Y %H:%M:%S")
+                hostname = socket.gethostname()
+                user_ip = socket.gethostbyname(hostname)
+                ip = geocoder.ip('me')
+                location = ip.city
+                failure = FailedAttempts(email=user_email, ip=user_ip, date=format_date,
+                                         location=location)
+                db.session.add(failure)
+                db.session.commit()
+                flash(f'Incorrect login information.', category='error')
 
         else:
-            flash(f'User doesn\'t exist', category='error')
+            flash(f'Incorrect login information.', category='error')
 
     return render_template('login.html', user=current_user)
 

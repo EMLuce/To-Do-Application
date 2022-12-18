@@ -38,9 +38,9 @@
 <div class="working-note-display-container">
   <h4>My List</h4>
   <br />
-  <ul class="list-group">
+  <ul class="list-group" id="working_sortable">
     {% for note in user.notes %} {% if note.completed == False %}
-    <li class="list-group-item" id="item{{note.id}}">
+    <li class="list-group-item" id="item_{{note}}">
       <span aria-hidden="true">
         <input type="checkbox" onClick="completeNote({{ note.id }})" />
       </span>
@@ -78,9 +78,9 @@
 <br />
 
 <div class="completed-note-display-container">
-  <ul class="list-group">
+  <ul class="list-group" id="completed_sortable">
     {% for note in user.notes %} {% if note.completed == True %}
-    <li class="list-group-item" draggable="true">
+    <li class="list-group-item">
       <span aria-hidden="true">
         <input type="checkbox" onClick="completeNote({{ note.id }})" checked />
       </span>

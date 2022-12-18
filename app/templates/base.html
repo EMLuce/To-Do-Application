@@ -22,13 +22,16 @@
     <script
       type="text/javascript"
       src="{{ url_for('static', filename='index.js') }}"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <link
-      rel="stylesheet"
-      href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
-    <link rel="stylesheet" href="/resources/demos/style.css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $(function () {
+        $("#working_sortable").sortable();
+      });
+      $(function () {
+        $("#completed_sortable").sortable();
+      });
+    </script>
     <title>{% block title %}Home{% endblock %}</title>
   </head>
   <body class="body">
