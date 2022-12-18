@@ -3,7 +3,7 @@
 1. Functionality to sign-Up & sign-In [x]
 2. Functionality to create, edit, and delete To-Do's [x]
 3. Functionality to set & edit To-Do dates [x]
-4. Ability to Order To-Do's []
+4. Ability to Order To-Do's [x]
 5. Functionality to mark To-Do's as complete [x]
 6. Add requirements file [x]
 
