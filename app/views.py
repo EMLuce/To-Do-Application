@@ -21,7 +21,7 @@ def home():
         note = request.form.get('note')
         due_date = request.form.get('due-date')
 
-        new_note = Note(creation_date=current_date, note=note, user_id=current_user.id, status='Working', due_date=due_date)
+        new_note = Note(creation_date=current_date, note=note, user_id=current_user.id, due_date=due_date)
         db.session.add(new_note)
         db.session.commit()
 
@@ -46,13 +46,18 @@ def complete_note():
     noteId = note['noteId']
     note = Note.query.get(noteId)
 
+    now = datetime.now()
+    current_date = now.strftime("%Y-%m-%d")
+
     if note.completed == True:
         note.completed = False
         note.status = 'Working'
+        note.completed_date = ''
         db.session.commit()
     elif note.completed == False:
         note.completed = True
         note.status = 'Completed'
+        note.completed_date = current_date
         db.session.commit()
         
     return jsonify({})
@@ -60,7 +65,6 @@ def complete_note():
 @views.route('/update/<int:note_id>', methods=['GET','POST'])
 @login_required
 def update(note_id):
-
     note = Note.query.filter_by(id=note_id).first()
 
     if request.form.get('action') == 'Edit': 

@@ -1,5 +1,4 @@
 '''Utilized to manipulate the back-end of all authentication views.'''
-from venv import create
 from flask_login import UserMixin
 from app import db
 from . import *
@@ -21,6 +20,6 @@ class Note(db.Model):
     creation_date = db.Column(db.String(150))
     due_date = db.Column(db.String(150))
     note = db.Column(db.String(1000))
-    status = db.Column(db.String(1000))
     completed = db.Column(db.Boolean, default=False, server_default="false")
+    completed_date = db.Column(db.String(150), default='')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))

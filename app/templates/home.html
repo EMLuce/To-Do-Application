@@ -23,8 +23,7 @@
         name="due-date"
         value=""
         placeholder="Due Date"
-        onfocus="(this.type='date')"
-        required />
+        onfocus="(this.type='date')" />
     </div>
     <input
       type="submit"
@@ -41,7 +40,7 @@
   <br />
   <ul class="list-group">
     {% for note in user.notes %} {% if note.completed == False %}
-    <li class="list-group-item" draggable="true">
+    <li class="list-group-item" id="item{{note.id}}">
       <span aria-hidden="true">
         <input type="checkbox" onClick="completeNote({{ note.id }})" />
       </span>
@@ -64,9 +63,11 @@
         </button>
       </span>
       <p class="note" id="note-data">{{note.note}}</p>
-      {% if note.due_date > current_date %}
+      {% if note.due_date == '' %}
+      <p class="date-overdue">No Due Date</p>
+      {% elif note.due_date > current_date %}
       <p class="date-good">{{note.due_date}}</p>
-      {% else %}
+      {% elif note.due_date < current_date %}
       <p class="date-overdue">Overdue: {{note.due_date}}</p>
       {% endif %}
     </li>
@@ -95,18 +96,13 @@
           /></span>
         </button>
       </span>
-      <p class="note">{{note.note}}</p>
-      {% if note.due_date > current_date %}
-      <p class="date-good">{{note.due_date}}</p>
-      {% else %}
-      <p class="date-overdue">{{note.due_date}}</p>
-      {% endif %}
+      <p class="note" id="note-data">{{note.note}}</p>
+      <p class="date-good">Completed: {{note.completed_date}}</p>
     </li>
     {% endif %} {% endfor %}
   </ul>
 </div>
 
-<br />
 <br />
 
 {% endblock %}
