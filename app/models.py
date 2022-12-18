@@ -6,6 +6,8 @@ from . import *
 app = create_app
 
 class User(db.Model, UserMixin):
+    """This class is the user model that will hold all user data moving 
+    forward."""
     id = db.Column(db.Integer, primary_key=True)
     creation_date = db.Column(db.String(150))
     email = db.Column(db.String(150), unique=True)
@@ -16,6 +18,9 @@ class User(db.Model, UserMixin):
     notes = db.relationship('Note')
 
 class Note(db.Model):
+    """This class is utilized to store all user To-Dos. A foreign
+    key is utilized to form a relationship between To-dos and the User
+    model."""
     id = db.Column(db.Integer, primary_key=True)
     creation_date = db.Column(db.String(150))
     due_date = db.Column(db.String(150))

@@ -65,7 +65,7 @@ def complete_note():
 def update(note_id):
     note = Note.query.filter_by(id=note_id).first()
 
-    if request.form.get('action') == 'Edit': 
+    if request.form.get('action') == 'Save': 
         new_note = request.form.get('note')
         new_due_date = request.form.get('due-date')
 
@@ -77,10 +77,3 @@ def update(note_id):
         return redirect(url_for('views.home'))
 
     return render_template('update.html', user=current_user, note=note)
-
-@views.route('/sort', methods=['GET','POST'])
-@login_required
-def sort():
-    pass
-
-    return jsonify()

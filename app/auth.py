@@ -3,13 +3,10 @@ import socket
 import uuid as uuid
 from datetime import datetime
 import geocoder
-
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
-
 from app import db
-
 from .models import User, FailedAttempts
 
 auth =  Blueprint('auth', __name__)
